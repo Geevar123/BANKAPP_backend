@@ -1,0 +1,125 @@
+Server Creation = Node.js + Express
+-----------------------------------
+
+Basic Commands
+--------------
+
+(a). Creation of the package - npm init
+(b). Creation of node modules - npm i express  (installing Express)
+
+Basic Steps
+-----------
+
+(1)- Create a folder (Bank Server)
+(2)- Create package.JSON (using steps a & b)
+(3)- Install Express
+(4)- Create index.js
+(5)- Import express inside index.js6
+(6)- Create an App using express
+(7)- Setup port number
+(8)- Resolving HTTP request
+     GET- To get the data
+     POST- To post the data
+     PUT- To update data partially
+     PATCH- To update data completely
+     DELETE- To delete data completely
+
+(9)- HTTP Response Code
+     100* - Information
+     200* - Successful
+     300* - Redirection
+     400* - Client Error
+     500* - Server Error
+
+(10)- JWT Token : 
+                  > Install JWT - npm i jsonwebtoken
+     
+                  > To generate a Token- sign()
+
+(11)- Middleware - It comes in the middle of the request and responsee cycle in node.js execution process.
+      > Application specific middleware: For entire application
+        - Request
+        - Response
+        - Nest
+      > Router specific middleware: For specific path only(single prupose)
+        - verify() -jwtwebtoken
+
+ To parse JSON from requst body
+-------------------------------
+app.use(express.json())
+
+(12)- Database Integration
+      > Install mongoose - npm i mongoose
+
+      > Import Mongoose - const mongoose= require('mongoose');
+
+      > State connection strig via mongoose - 
+
+          mongoose.connect('mongodb://localhost:27017/BankServerAug',
+          {
+           useNewUrlParser:true       // to avoid unvanted warnings
+          });
+     
+     > Define bank db model
+      
+          const User=mongoose.Model('User',
+          {
+               <!-- Schema Creation -->
+               acno:Number,
+               username:String,
+               password:String,
+               balance:Number,
+               transaction:[]
+          });
+
+     > Export collection
+          
+          module.export{
+               User
+          }
+     
+     > Import db in data.services : const db=require('./db')
+
+(13)- Asynchronous function resolving - promise
+
+     >Resolve state - .then()
+     >Reject state - .catch()
+
+(14)- CORS - Cross Origin Resource Sharing
+
+     >install cors- npm i cors
+
+     port 4200(Angular) <-----request-----> 3000(node)(receive)
+
+(15)- Asynchronous Call - RxJs -(Reactive Extension for Javascript)
+
+JS -promise
+TS -RxJs(library)
+     >Observable
+          a)resolved - Subscribe()
+          b)reject - catch()
+
+
+
+
+
+
+
+
+Commands To give in MONGO_SHELL
+-------------------------------
+
+<!-- To add a user -->
+db.users.insertOne({acno:1007})
+
+<!-- Ta find a user -->
+
+db.users.findOne({acno:1007})
+
+<!-- To update a user -->
+
+db.users.updateOne({username:"Arun"},{$set:{username:"Arun Kumar"}})
+
+
+
+db.users.updateOne({username:"Ronaldo"},{$set:{username:"Christiano Ronaldo"}},{upsert:true})
