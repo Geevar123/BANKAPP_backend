@@ -22,7 +22,7 @@ app.use(express.json())  //type conversion
 // give command to share data via cors
 
 app.use(cors({
-    origin:'http://localhost:4200'
+    origin:['http://localhost:4200','http://192.168.45.149:8080']
 }))
 
 // Application specific middleware
